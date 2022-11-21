@@ -1,0 +1,6 @@
+# ignores all .o files
+objs/
+
+# ignores test files
+test.c
+gnl
