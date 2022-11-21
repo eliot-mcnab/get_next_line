@@ -1,6 +1,9 @@
 # ignores all .o files
 objs/
 
+# ignoring libft
+libft/
+
 # ignores test files
 test.c
 gnl
