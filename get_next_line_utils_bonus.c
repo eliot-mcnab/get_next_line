@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:20:59 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 18:26:19 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 18:51:31 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ t_any	*ft_larray_collect(t_linkarray *a)
 	{
 		i = 0;
 		limit = a->array_size;
-		if (a->i >= a->array_size && j >= a->array_size * a->i / a->array_size)
+		if (j >= a->i / a->array_size * a->array_size)
 			limit = a->i % a->array_size;
 		while (i < limit)
 			grabbed[j++] = ((t_any *)node_current->content)[i++];
@@ -92,21 +92,21 @@ void	ft_larray_clear(t_linkarray *a, void (*f_free)(t_any))
 
 	if (!a || !f_free)
 		return ;
-	node_current = a -> first;
-	while (a->i > a->array_size && a -> array_count--)
+	node_current = a->first;
+	while (a->i >= a->array_size && a->array_count--)
 	{
 		node_previous = node_current;
-		node_current = node_current -> next;
+		node_current = node_current->next;
 		i = 0;
-		while (i < (a -> array_size))
-			f_free(((t_any *)node_previous -> content)[i++]);
+		while (i < (a->array_size))
+			f_free(((t_any *)node_previous->content)[i++]);
 		ft_lstdelone(node_previous, f_free);
 	}
 	i = 0;
-	while (i < a -> i % (a -> array_size))
-		f_free(((t_any *)node_current -> content)[i++]);
+	while (i < a->i % a->array_size)
+		f_free(((t_any *)node_current->content)[i++]);
 	ft_lstdelone(node_current, f_free);
-	a -> first = NULL;
-	a -> i = 0;
+	a->first = NULL;
+	a->i = 0;
 	free(a);
 }

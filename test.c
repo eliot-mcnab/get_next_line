@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 18:19:32 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 18:51:42 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	main(void)
 	char		**strs;
 	size_t		i;
 
-	linkarray = ft_larray_new(5);
+	linkarray = ft_larray_new(4);
 	ft_larray_add(linkarray, ft_strdup("test"));
 	ft_larray_add(linkarray, ft_strdup("hello"));
 	ft_larray_add(linkarray, ft_strdup("nope"));
