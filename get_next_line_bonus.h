@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:17:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 11:14:47 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:00:46 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,9 @@ void		ft_larray_free(t_linkarray *linkarray, void (*f_free)(t_any));
 t_any		*ft_larray_collect(t_linkarray *linkarray);
 
 // fixed-size hashmaps
-t_hashmap	*ft_hashmap_fd(size_t size);
-void		ft_hashmap_add(t_hashmap *hashmap, size_t hash, t_any *data);
-t_any		ft_hashmap_get(t_hashmap *hashmap, size_t hash);
+t_hashmap	*ft_hashmap_new(size_t size);
+void		ft_hashmap_set(t_hashmap *hashmap, size_t hash, t_any data);
+t_any		*ft_hashmap_get(t_hashmap *hashmap, size_t hash);
 void		ft_hashmap_clear(t_hashmap *hashmap, void (*f_free)(t_any));
 
 #endif

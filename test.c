@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 11:29:35 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:11:17 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
 int	main(void)
 {
 	char		**strs;
-	t_linkarray	*linkedarray;
+	t_linkarray	*linkarray;
+	t_hashmap	*hashmap;
 	char		**array;
 	size_t		i;
 
@@ -25,17 +26,17 @@ int	main(void)
 	strs[0] = ft_strdup("test");
 	strs[1] = ft_strdup("hello");
 	strs[2] = ft_strdup("nope");
-	strs[3] = ft_strdup("yooo");
-	linkedarray = ft_larray_new((t_any *)strs, 4);
-	array = (char **)ft_larray_collect(linkedarray);
+	strs[3] = ft_strdup("yoooo");
+	linkarray = ft_larray_new((t_any *)strs, 4);
+	hashmap = ft_hashmap_new(32);
+	ft_hashmap_set(hashmap, 0, linkarray);
+	linkarray = (t_linkarray *)ft_hashmap_get(hashmap, 0);
+	array = (char **)ft_larray_collect(linkarray);
 	i = 0;
 	while (array[i])
-	{
-		ft_putendl_fd(array[i], STDOUT);
-		i++;
-	}
+		ft_putendl_fd(array[i++], STDOUT);
 	free(array);
-	ft_larray_free(linkedarray, NULL);
+	ft_larray_free(linkarray, NULL);
 	free(strs);
 	return (0);
 }

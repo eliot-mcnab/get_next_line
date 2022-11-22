@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:30:50 by emcnab            #+#    #+#              #
-#    Updated: 2022/11/22 10:45:05 by emcnab           ###   ########.fr        #
+#    Updated: 2022/11/22 13:46:49 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,7 @@ OFILES = $(patsubst %.c, $(ODIR)%.o, $(MAND_FILES))\
 
 # C compiler
 CC     = clang
-CMODE  = debug hard
+CMODE  = debug hard fsanitize
 OPT    = -O0
 CFLAGS = -Wall -Wextra -Werror $(OPT)
 

@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:53:37 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 11:33:12 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:03:05 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,15 @@ t_linkarray	*ft_larray_new(t_any *data, size_t n)
 	return (linkarray);
 }
 
-t_hashmap	*ft_hashmap_fd(size_t size)
+t_hashmap	*ft_hashmap_new(size_t size)
 {
 	t_hashmap	*hashmap;
 
 	hashmap = malloc(sizeof(*hashmap));
-	if (!hashmap)
+	if (!hashmap || !size)
 		return (NULL);
 	hashmap -> map = malloc(size * sizeof(t_list *));
+	hashmap -> size = size;
 	if (!(hashmap -> map))
 		return (NULL);
 	while (size--)
@@ -50,7 +51,7 @@ t_hashmap	*ft_hashmap_fd(size_t size)
 	return (hashmap);
 }
 
-void	ft_hashmap_add(t_hashmap *hashmap, size_t hash, t_any *data)
+void	ft_hashmap_set(t_hashmap *hashmap, size_t hash, t_any data)
 {
 	t_any	*hash_data;
 	t_list	*slot;
@@ -75,18 +76,18 @@ void	ft_hashmap_add(t_hashmap *hashmap, size_t hash, t_any *data)
 	}
 }
 
-t_any	ft_hashmap_get(t_hashmap *hashmap, size_t hash)
+t_any	*ft_hashmap_get(t_hashmap *hashmap, size_t hash)
 {
 	t_list	*node_current;
 
 	if (!hashmap)
 		return (NULL);
 	node_current = (hashmap -> map)[hash % hashmap -> size];
-	while (node_current && *((size_t **)node_current -> content)[0] != hash)
+	while (node_current && **((size_t **)(node_current -> content)) != hash)
 		node_current = node_current -> next;
 	if (!node_current)
 		return (NULL);
-	return (((t_any **)node_current -> content)[1]);
+	return (((t_any **)(node_current -> content))[1]);
 }
 
 void	ft_hashmap_clear(t_hashmap *hashmap, void (*f_free)(t_any))
