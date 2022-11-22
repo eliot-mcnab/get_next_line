@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 15:50:38 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 16:02:02 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@
 
 static void	ft_linkhash_clear(t_any any)
 {
-	t_linkarray	*linkarray;
+	t_hashdata	*hashdata;
 
-	linkarray = ((t_linkarray **)any)[1];
-	ft_larray_clear(linkarray, &free);
+	hashdata = (t_hashdata *)any;
+	ft_larray_clear((t_linkarray *)hashdata -> data, &free);
 	free(any);
 }
 

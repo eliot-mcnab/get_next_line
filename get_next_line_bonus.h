@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:17:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 14:16:42 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 16:05:39 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,25 @@
 
 # define ARRAY_SIZE 2
 
-typedef	struct	s_linked_array
+typedef struct s_linked_array
 {
-	t_list	*first;
-	t_list	*last;
 	size_t	index;
 	size_t	n_array;
+	t_list	*first;
+	t_list	*last;
 }	t_linkarray;
 
-typedef struct	s_hashmap
+typedef struct s_hashmap
 {
-	t_list	**map;
 	size_t	size;
+	t_list	**map;
 }	t_hashmap;
+
+typedef struct s_hashdata
+{
+	size_t	hash;
+	t_any	data;
+}	t_hashdata;
 
 // linked array
 t_list		*ft_lst_new(t_any content);

@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 13:53:37 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 15:53:03 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 16:04:30 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,48 +21,61 @@ t_hashmap	*ft_hashmap_new(size_t size)
 	if (!hashmap || !size)
 		return (NULL);
 	hashmap -> map = malloc(size * sizeof(t_list *));
-	hashmap -> size = size;
 	if (!(hashmap -> map))
 		return (NULL);
+	hashmap -> size = size;
 	while (size--)
 		(hashmap -> map)[size] = NULL;
 	return (hashmap);
 }
 
+static t_hashdata	*ft_hashdata_new(size_t hash, t_any data)
+{
+	t_hashdata	*hashdata;
+
+	hashdata = malloc(sizeof(*hashdata));
+	if (!hashdata)
+		return (NULL);
+	hashdata -> hash = hash;
+	hashdata -> data = data;
+	return (hashdata);
+}
+
 void	ft_hashmap_set(t_hashmap *hashmap, size_t hash, t_any data)
 {
-	t_any			*hash_data;
-	t_list			*slot;
-	t_list			*node_current;
-	static size_t	test;
+	t_hashdata	*hashdata;
+	t_list		*slot;
+	t_list		*node_current;
 
 	if (!hashmap)
 		return ;
-	hash_data = malloc(2 * sizeof(*hash_data));
-	if (!hash_data)
+	hashdata = ft_hashdata_new(hash, data);
+	if (!hashdata)
 		return ;
-	test = hash;
-	hash_data[0] = &test;
-	hash_data[1] = data;
 	slot = (hashmap -> map)[hash % (hashmap -> size)];
 	if (!slot)
-		(hashmap -> map)[hash % (hashmap -> size)] = ft_lst_new(hash_data);
+		(hashmap -> map)[hash % (hashmap -> size)] = ft_lst_new(hashdata);
 	else
 	{
 		node_current = slot;
 		while (node_current -> next)
 			node_current = node_current -> next;
-		node_current -> next = ft_lst_new(hash_data);
+		node_current -> next = ft_lst_new(hashdata);
 	}
 }
 
 t_any	*ft_hashmap_get(t_hashmap *hashmap, size_t hash)
 {
-	t_list	*node_current;
+	t_list		*node_current;
+	t_hashdata	*hashdata;
 
 	node_current = (hashmap -> map)[hash % hashmap -> size];
-	while (node_current && **((size_t **)node_current -> content) != hash)
+	hashdata = (t_hashdata *)node_current -> content;
+	while (node_current && hashdata -> hash != hash)
+	{
 		node_current = node_current -> next;
+		hashdata = (t_hashdata *)node_current -> content;
+	}
 	if (!node_current)
 		return (NULL);
 	return (((t_any **)(node_current -> content))[1]);
