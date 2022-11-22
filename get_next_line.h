@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:30:03 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 11:02:44 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 17:37:18 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@
 # include "stdlib.h"
 # include "libft.h"
 
+# define HASHMAP_SIZE 512
+
 char	*get_next_line(int fd);
 
-// Utilities
+// linked lists
 t_list	*ft_lst_new(t_any content);
 void	ft_lstclear(t_list **head, void (*f_free)(t_any));
 void	ft_lstdelone(t_list *node, void (*f_free)(t_any));

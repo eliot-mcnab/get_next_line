@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:17:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 16:05:39 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 18:18:51 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@
 
 typedef struct s_linked_array
 {
-	size_t	index;
-	size_t	n_array;
+	size_t	i;
+	size_t	array_count;
+	size_t	array_size;
 	t_list	*first;
 	t_list	*last;
 }	t_linkarray;
@@ -38,8 +39,7 @@ typedef struct s_hashdata
 }	t_hashdata;
 
 // linked array
-t_list		*ft_lst_new(t_any content);
-t_linkarray	*ft_larray_new(t_any *data, size_t n);
+t_linkarray	*ft_larray_new(size_t size);
 void		ft_larray_add(t_linkarray *linkarray, t_any data);
 void		ft_larray_clear(t_linkarray *linkarray, void (*f_free)(t_any));
 t_any		*ft_larray_collect(t_linkarray *linkarray);
