@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:17:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 14:00:46 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 14:16:42 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ typedef struct	s_hashmap
 t_list		*ft_lst_new(t_any content);
 t_linkarray	*ft_larray_new(t_any *data, size_t n);
 void		ft_larray_add(t_linkarray *linkarray, t_any data);
-void		ft_larray_free(t_linkarray *linkarray, void (*f_free)(t_any));
+void		ft_larray_clear(t_linkarray *linkarray, void (*f_free)(t_any));
 t_any		*ft_larray_collect(t_linkarray *linkarray);
 
 // fixed-size hashmaps

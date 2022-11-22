@@ -6,13 +6,22 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:09:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 14:11:17 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 15:50:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "get_next_line_bonus.h"
 #include "libft.h"
+
+static void	ft_linkhash_clear(t_any any)
+{
+	t_linkarray	*linkarray;
+
+	linkarray = ((t_linkarray **)any)[1];
+	ft_larray_clear(linkarray, &free);
+	free(any);
+}
 
 int	main(void)
 {
@@ -36,7 +45,7 @@ int	main(void)
 	while (array[i])
 		ft_putendl_fd(array[i++], STDOUT);
 	free(array);
-	ft_larray_free(linkarray, NULL);
 	free(strs);
+	ft_hashmap_clear(hashmap, &ft_linkhash_clear);
 	return (0);
 }
