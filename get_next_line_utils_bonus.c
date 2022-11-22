@@ -6,47 +6,11 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:20:59 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/21 19:16:48 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 11:22:25 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-
-t_list	*ft_lst_new(t_any content)
-{
-	t_list	*node;
-
-	node = malloc(sizeof(*node));
-	if (!node)
-	{
-		return (NULL);
-	}
-	node -> content = content;
-	node -> next = NULL;
-	return (node);
-}
-
-t_linkarray	*ft_larray_new(t_any *data, size_t n)
-{
-	t_linkarray	*linkarray;
-	size_t		i;
-
-	linkarray = malloc(sizeof(*linkarray));
-	if (!linkarray)
-	{
-		return (NULL);
-	}
-	linkarray -> array = ft_lst_new(malloc(ARRAY_SIZE * sizeof(t_any)));
-	linkarray -> last = linkarray -> array;
-	linkarray -> index = 0;
-	linkarray -> n_array = 1;
-	i = 0;
-	while (n--)
-	{
-		ft_larray_add(linkarray, data[i++]);
-	}
-	return (linkarray);
-}
 
 void	ft_larray_add(t_linkarray *linkarray, t_any data)
 {
@@ -68,6 +32,43 @@ void	ft_larray_add(t_linkarray *linkarray, t_any data)
 	i = (linkarray -> index) % ARRAY_SIZE;
 	((t_any *)array_current -> content)[i] = data;
 	linkarray -> index++;
+}
+
+static void	ft_larray_grab(t_any *grabbed, t_any *content,
+		size_t *i_start, size_t i_stop)
+{
+	while (*i_start < i_stop)
+	{
+		grabbed[*i_start] = content[*i_start % ARRAY_SIZE];
+		(*i_start)++;
+	}
+}
+
+t_any	*ft_larray_collect(t_linkarray *linkarray)
+{
+	t_any	*grabbed;
+	t_list	*node_current;
+	size_t	i;
+	size_t	j;
+
+	if (!linkarray)
+		return (NULL);
+	grabbed = malloc((linkarray -> index + 1) * sizeof(*grabbed));
+	if (!grabbed)
+		return (NULL);
+	node_current = linkarray -> first;
+	i = 1;
+	j = 0;
+	while (i < linkarray -> n_array)
+	{
+		ft_larray_grab(grabbed, node_current -> content, &j,
+			(j / ARRAY_SIZE + 1) * ARRAY_SIZE);
+		node_current = node_current -> next;
+		i++;
+	}
+	ft_larray_grab(grabbed, node_current -> content, &j, linkarray -> index);
+	grabbed[j] = NULL;
+	return (grabbed);
 }
 
 static void	ft_subarray_free(t_list *node, size_t until, void (*f_free)(t_any))
@@ -94,7 +95,7 @@ void	ft_larray_free(t_linkarray *linkarray, void (*f_free)(t_any))
 
 	if (!linkarray)
 		return ;
-	node_current = linkarray -> array;
+	node_current = linkarray -> first;
 	while (linkarray -> index > ARRAY_SIZE)
 	{
 		node_previous = node_current;
@@ -103,7 +104,7 @@ void	ft_larray_free(t_linkarray *linkarray, void (*f_free)(t_any))
 		linkarray -> index -= ARRAY_SIZE;
 	}
 	ft_subarray_free(node_current, linkarray -> index, f_free);
-	linkarray -> array = NULL;
+	linkarray -> first = NULL;
 	linkarray -> index = 0;
 	free(linkarray);
 }

@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:30:50 by emcnab            #+#    #+#              #
-#    Updated: 2022/11/21 15:48:57 by emcnab           ###   ########.fr        #
+#    Updated: 2022/11/22 10:45:05 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,14 +44,14 @@ export SEPERATOR
 
 # mandatory files
 define MAND_FILES
-	test.c
+	get_next_line_utils.c	test.c
 endef
 
 # bonus files
 define BONUS_FILES
-	get_next_line_utils_bonus.c
+	get_next_line_utils_bonus.c	get_next_line_bonus.c
 endef
-
+ 
 # this is where all object files are compiled to
 ODIR   = objs/
 
@@ -73,7 +73,7 @@ ifneq ($(filter debug, $(CMODE)),)
 	CFLAGS += -g
 endif
 ifneq ($(filter fsanitize, $(CMODE)),)
-	CFLAGS += -fsanitize=address,undefined
+	CFLAGS += -fsanitize=address
 endif
 ifneq ($(filter hard, $(CMODE)),)
 	CFLAGS += -Weverything
