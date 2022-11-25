@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:30:03 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 17:37:18 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/25 14:26:46 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,12 @@
 # include "libft.h"
 
 # define HASHMAP_SIZE 512
+# define ARRAY_SIZE 32
+
+typedef unsigned long int	t_longword;
 
 char	*get_next_line(int fd);
+t_str	ft_quickfind(t_str str, int c);
 
 // linked lists
 t_list	*ft_lst_new(t_any content);

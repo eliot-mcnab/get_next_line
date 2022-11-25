@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:20:59 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 18:51:31 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 19:12:09 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	ft_larray_clear(t_linkarray *a, void (*f_free)(t_any))
 	if (!a || !f_free)
 		return ;
 	node_current = a->first;
+	// TODO: condense freeing into this single while instead of having a second
+	// free for the lat sub-array
 	while (a->i >= a->array_size && a->array_count--)
 	{
 		node_previous = node_current;

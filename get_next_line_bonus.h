@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 11:17:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/22 18:18:51 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/22 19:05:23 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include "get_next_line.h"
-
-# define ARRAY_SIZE 2
 
 typedef struct s_linked_array
 {
