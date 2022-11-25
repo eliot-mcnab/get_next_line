@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:30:50 by emcnab            #+#    #+#              #
-#    Updated: 2022/11/25 13:03:32 by emcnab           ###   ########.fr        #
+#    Updated: 2022/11/25 18:46:49 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,12 @@ export SEPERATOR
 
 # mandatory files
 define MAND_FILES
-	get_next_line.c	get_next_line_utils.c	test.c
+	get_next_line_utils.c	test.c
 endef
 
 # bonus files
 define BONUS_FILES
-	get_next_line_utils_bonus.c	get_next_line_bonus.c
+
 endef
  
 # this is where all object files are compiled to
@@ -61,7 +61,7 @@ OFILES = $(patsubst %.c, $(ODIR)%.o, $(MAND_FILES))\
 
 # C compiler
 CC     = clang
-CMODE  = debug
+CMODE  = debug hard
 OPT    = -O0
 CFLAGS = -Wall -Wextra -Werror $(OPT)
 
