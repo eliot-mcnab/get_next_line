@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/21 10:30:30 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/25 14:59:35 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/25 15:11:53 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,17 @@
 		ft_hashmap_set(hashmap, fd, ft_larray_new(ARRAY_SIZE));
 } */
 
+/*
+ * @brief Searches for the character [c] in the longword pointed to by [lword]
+ * 	by comparing up to 8 bytes at a time. Works on architectures with 32-bit 
+ * 	and 64-bit longwords.
+ *
+ * @param lword (t_longword): the longword to search.
+ * @param c (int): the character to find in [lword].
+ *
+ * @return (bool): true if [c] was found in [lword] or the end of the string
+ * 	represented by [lword] was reached, false otherwise.
+ */
 static bool	ft_bytesearch(t_longword lword, int c)
 {
 	size_t		lsize;
@@ -58,7 +69,18 @@ static bool	ft_bytesearch(t_longword lword, int c)
 	return (found);
 }
 
-t_str	ft_quickfind(t_str str, int c)
+/*
+ * @brief Optimised linear search for a character [c] in a string [str]. Takes
+ * 	advantage of longwords to compare up to 8 bytes at a time. Only works on
+ * 	architectures with 32-bit and 64-bit longwords.
+ *
+ * @param str (t_str): the string to search.
+ * @param c (int): the character to find, considered as an unsigned char.
+ *
+ * @return (char *): pointer to the first occurrence of [c] in [str], or to the
+ * 	terminating null-byte in [str] if [c] was not found.
+ */
+char	*ft_quickfind(t_str str, int c)
 {
 	t_longword	*lword_ptr;
 	t_longword	lword;
@@ -81,6 +103,6 @@ t_str	ft_quickfind(t_str str, int c)
 		str = (t_str)(lword_ptr - 1);
 		while (i++ < sizeof(lword))
 			if (!str[i - 1] || str[i - 1] == c)
-				return (str + i - 1);
+				return ((char *)str + i - 1);
 	}
 }
