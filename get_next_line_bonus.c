@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:44:59 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:56:12 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,13 +136,11 @@ char	*ft_linkstr_collect(t_linkstr *linkstr)
  * @brief Frees up all the memory used up by a linked string.
  *
  * @param linkstr (t_linkstr *): the linked strings to free.
- * @param f_free (void (void *)): function used to free up the strings contained
- * 	in [linkstr].
  */
-void	ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
+void	ft_linkstr_delall(t_linkstr *linkstr)
 {
-	if (!linkstr | !f_free)
+	if (!linkstr)
 		return ;
-	ft_lst_delall(&(linkstr->strs_first), f_free);
+	ft_lst_delall(&(linkstr->strs_first), &free);
 	free(linkstr);
 }

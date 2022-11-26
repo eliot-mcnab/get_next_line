@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:39 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:26:43 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:56:22 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ void	ft_lst_delall(t_list **lst, void (*f_free)(void *));
 t_linkstr	*ft_linkstr_new(size_t linksize);
 void		ft_linkstr_add(t_linkstr *linkstr, char *str);
 char		*ft_linkstr_collect(t_linkstr *linkstr);
-void		ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *));
+void		ft_linkstr_delall(t_linkstr *linkstr);
 
 #endif
