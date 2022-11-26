@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:30:50 by emcnab            #+#    #+#              #
-#    Updated: 2022/11/25 18:46:49 by emcnab           ###   ########.fr        #
+#    Updated: 2022/11/26 15:22:23 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ endef
 
 # bonus files
 define BONUS_FILES
-
+	get_next_line_bonus.c	get_next_line_utils_bonus.c
 endef
  
 # this is where all object files are compiled to
