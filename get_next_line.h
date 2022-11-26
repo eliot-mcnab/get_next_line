@@ -6,13 +6,14 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:44:25 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/25 18:15:54 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 13:40:05 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
+# include <stdlib.h>
 # include <stddef.h>
 # include <stdbool.h>
 
