@@ -6,12 +6,25 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:30:59 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:44:59 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
+/*
+ * @brief Creates a new linked string instance.
+ * 
+ * Linked strings are designed to avoid the overhead of resizing strings
+ * by storing consecutive strings in arrays in linkedlists. Strings are then
+ * concatenated all at once when the ft_linkstr_collect(1) function is called,
+ * avoiding multiple resizes.
+ *
+ * @param linksize (size_t): the number of strings each linkedlist node will
+ * 	hold.
+ *
+ * @return (t_linkstr *): new linked string.
+ */
 t_linkstr	*ft_linkstr_new(size_t linksize)
 {
 	t_linkstr	*linkstr;
@@ -31,6 +44,12 @@ t_linkstr	*ft_linkstr_new(size_t linksize)
 	return (linkstr);
 }
 
+/*
+ * @brief Adds a new string at the end of a a linked string.
+ *
+ * @param linkstr (t_linkstr *): the linked string to append [str] to.
+ * @param str (char *): the string to append to [linkstr].
+ */
 void	ft_linkstr_add(t_linkstr *linkstr, char *str)
 {
 	char	**strs;
@@ -49,6 +68,15 @@ void	ft_linkstr_add(t_linkstr *linkstr, char *str)
 	linkstr->i++;
 }
 
+/*
+ * @brief Determines the total size of a linked string by summing the individual
+ * 	size of each string it contains.
+ *
+ * @param linkstr (t_linkstr *): the linked strings to determine the total size
+ * 	of.
+ *
+ * @return (size_t): the total size of [linkstr].
+ */
 static size_t	ft_linkstr_size(t_linkstr *linkstr)
 {
 	t_list	*node_current;
@@ -70,6 +98,13 @@ static size_t	ft_linkstr_size(t_linkstr *linkstr)
 	return (size);
 }
 
+/*
+ * @brief Concatenates all strings held in a linked string into a single string.
+ *
+ * @param linkstr (t_linkstr *): the linked string containing the strings.
+ *
+ * @return (char *): result of concatenating all the strings in [linkstr].
+ */
 char	*ft_linkstr_collect(t_linkstr *linkstr)
 {
 	char	*collect;
@@ -97,12 +132,17 @@ char	*ft_linkstr_collect(t_linkstr *linkstr)
 	return (collect);
 }
 
+/*
+ * @brief Frees up all the memory used up by a linked string.
+ *
+ * @param linkstr (t_linkstr *): the linked strings to free.
+ * @param f_free (void (void *)): function used to free up the strings contained
+ * 	in [linkstr].
+ */
 void	ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
 {
 	if (!linkstr | !f_free)
 		return ;
 	ft_lst_delall(&(linkstr->strs_first), f_free);
-	linkstr->linksize = 0;
-	linkstr->i = 0;
 	free(linkstr);
 }

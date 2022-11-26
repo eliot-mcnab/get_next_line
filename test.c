@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:15:31 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:26:58 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:45:38 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	main(void)
 	ft_linkstr_add(linkstr, "hello");
 	ft_linkstr_add(linkstr, "world");
 	collect = ft_linkstr_collect(linkstr);
-	ft_putendl_fd(collect, STDOUT);
+	ft_putstr_fd(collect, STDOUT);
 	ft_linkstr_delall(linkstr, &free);
 	free(collect);
 	return (0);
