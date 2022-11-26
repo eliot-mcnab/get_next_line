@@ -6,12 +6,19 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:38:00 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 13:45:19 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:55:17 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 
+/*
+ * @brief Creates a new linked list node with the given content.
+ *
+ * @param content (void *): the content to initialise the linked list with.
+ *
+ * @return (t_list *): new linked list node.
+ */
 t_list	*ft_lst_new(void *content)
 {
 	t_list	*lst;
@@ -24,6 +31,14 @@ t_list	*ft_lst_new(void *content)
 	return (lst);
 }
 
+/*
+ * @brief Removes a node in a linked list, removing its reference to the next
+ * 	node in the list in case [lst] is still referenced somewhere else in the
+ * 	program.
+ *
+ * @param lst (t_lst): the list to free.
+ * @param f_free (void (void *)): function used to free the contents of the lits
+ */
 void	ft_lst_delone(t_list *lst, void (*f_free)(void *))
 {
 	if (!lst | ! f_free)
@@ -33,6 +48,13 @@ void	ft_lst_delone(t_list *lst, void (*f_free)(void *))
 	free(lst);
 }
 
+/*
+ * @brief Frees all nodes in a linked list and sets the head of the list to
+ * 	NULL.
+ *
+ * @param lst (t_lst **): the head of the list.
+ * @param f_free (void (void *)): function used to free the contents of the lits
+ */
 void	ft_lst_delall(t_list **lst, void (*f_free)(void *))
 {
 	t_list	*node_current;
