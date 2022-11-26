@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:25:37 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 15:30:59 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_linkstr_add(t_linkstr *linkstr, char *str)
 	char	**strs;
 	char	**strs_new;
 
+	if (!linkstr | !str)
+		return ;
 	if ((linkstr->i + 1) % (linkstr->linksize + 1) == 0)
 	{
 		strs_new = malloc(linkstr->linksize * sizeof(*strs_new));
@@ -76,6 +78,8 @@ char	*ft_linkstr_collect(t_linkstr *linkstr)
 	size_t	j;
 	size_t	k;
 
+	if (!linkstr)
+		return (NULL);
 	collect = malloc((ft_linkstr_size(linkstr) + 1) * sizeof(*collect));
 	node_current = linkstr->strs_first;
 	i = 0;
@@ -95,6 +99,8 @@ char	*ft_linkstr_collect(t_linkstr *linkstr)
 
 void	ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
 {
+	if (!linkstr | !f_free)
+		return ;
 	ft_lst_delall(&(linkstr->strs_first), f_free);
 	linkstr->linksize = 0;
 	linkstr->i = 0;
