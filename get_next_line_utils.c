@@ -6,12 +6,11 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:47:28 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 12:54:19 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:09:41 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "libft.h"
 
 /*
  * @brief Generates the longwords used in bitwise operations to find the byte
@@ -153,8 +152,8 @@ static char	*ft_longword_search(t_longword *lword, t_magic magic,
 	}
 }
 
-_Pragma("GCC diagnostic push")
-_Pragma("GCC diagnostic ignored \"-Wcast-align\"")
+// _Pragma("GCC diagnostic push")
+// _Pragma("GCC diagnostic ignored \"-Wcast-align\"")
 
 /*
  * @brief Rapidly searches for a character [c] in a string [str]. Takes
@@ -192,4 +191,16 @@ char	*ft_quickfind(char *str, int c)
 	return (ft_longword_search(lword, magic, (unsigned char)c));
 }
 
-_Pragma("GCC diagnostic pop")
+// _Pragma("GCC diagnostic pop")
+
+/*
+ * @brief Determines the length of a null-terminated string [str].
+ *
+ * @param str (char *): the string to get the length of.
+ *
+ * @return (size_t): the length of the string [str].
+ */
+size_t	ft_quicklen(char *str)
+{
+	return (ft_quickfind(str, '\0') - str);
+}

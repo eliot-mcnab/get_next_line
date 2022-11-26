@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:44:25 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 13:40:05 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 14:09:34 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ typedef struct	s_magic
 
 typedef unsigned long int	t_longword;
 
+// strings
 char	*ft_quickfind(char *str, int c);
+size_t	ft_quicklen(char *str);
 
 #endif
