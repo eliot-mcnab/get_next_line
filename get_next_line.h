@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:44:25 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 14:55:38 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 15:15:39 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stddef.h>
 # include <stdbool.h>
 
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 256
 # define ARRAY_SIZE 32
 
 _Pragma("GCC diagnostic push")
