@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:39 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 11:23:56 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:46:58 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ typedef struct s_linkstr
 
 // linked lists
 t_list	*ft_lst_new(void *content);
-void	ft_lst_delone(t_list *lst, void (*f_free)(void *));
-void	ft_lst_delall(t_list **lst, void (*f_free)(void *));
+void	*ft_lst_delone(t_list *lst, void (*f_free)(void *));
+void	*ft_lst_delall(t_list **lst, void (*f_free)(void *));
 
 // linked strings
 t_linkstr	*ft_linkstr_new(size_t linksize);
 void		ft_linkstr_add(t_linkstr *linkstr, char *str);
 char		*ft_linkstr_collect(t_linkstr *linkstr);
-void		ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *));
+void		*ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *));
 
 #endif

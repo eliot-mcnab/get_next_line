@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:45:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 11:24:22 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:49:45 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,14 @@ char	*get_next_line(int fd)
 		line.buffer[BUFFER_SIZE] = '\0';
 		if (!line.i && read(fd, line.buffer, BUFFER_SIZE) <= 0)
 		{
-			ft_linkstr_delall(linkstr, &free);
-			return (NULL);
+			return (ft_linkstr_delall(linkstr, &free));
 		}
 		line_end = ft_quickfind(line.buffer + line.i, '\n');
 		substr = ft_substr(line.buffer + line.i, line_end);
 		line.i = (size_t)((line_end - line.buffer + 1) % (BUFFER_SIZE + 1));
 		ft_linkstr_add(linkstr, substr);
-		if (*line_end == '\n')
-			line_current = ft_linkstr_collect(linkstr);
 	}
+	line_current = ft_linkstr_collect(linkstr);
 	ft_linkstr_delall(linkstr, &free);
 	return (line_current);
 }

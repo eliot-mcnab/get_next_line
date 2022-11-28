@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 11:31:40 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:48:16 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,15 +139,17 @@ char	*ft_linkstr_collect(t_linkstr *linkstr)
  * @param linkstr (t_linkstr *): the linked string to delete.
  * @param f_free (void (void *)): function used to free the strings in
  * 	[linkstr]. Pass NULL if the strings in [linkstr] don't need to be freed.
+ *
+ * @return (void *): NULL.
  */
-void	ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
+void	*ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
 {
 	t_list	*node_current;
 	t_list	*node_previous;
 	size_t	i;
 
 	if (!linkstr)
-		return ;
+		return (NULL);
 	node_current = linkstr->strs_first;
 	i = 0;
 	while (i < linkstr->i)
@@ -165,4 +167,5 @@ void	ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
 	ft_lst_delone(node_current, &free);
 	linkstr->strs_first = NULL;
 	free(linkstr);
+	return (NULL);
 }
