@@ -6,12 +6,13 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:45:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 11:05:33 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:24:22 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "get_next_line_bonus.h"
+#include <stdlib.h>
 
 char	*get_next_line(int fd)
 {
@@ -21,24 +22,25 @@ char	*get_next_line(int fd)
 	t_linkstr		*linkstr;
 	char			*substr;
 
-	line_current = NULL;
 	line_end = "";
 	linkstr = ft_linkstr_new(ARRAY_SIZE);
+	line_current = NULL;
 	while (*line_end != '\n')
 	{
 		line.buffer[BUFFER_SIZE] = '\0';
 		if (!line.i && read(fd, line.buffer, BUFFER_SIZE) <= 0)
+		{
+			ft_linkstr_delall(linkstr, &free);
 			return (NULL);
+		}
 		line_end = ft_quickfind(line.buffer + line.i, '\n');
 		substr = ft_substr(line.buffer + line.i, line_end);
 		line.i = (size_t)((line_end - line.buffer + 1) % (BUFFER_SIZE + 1));
 		ft_linkstr_add(linkstr, substr);
 		if (*line_end == '\n')
-		{
 			line_current = ft_linkstr_collect(linkstr);
-			ft_linkstr_delall(linkstr);
-		}
 	}
+	ft_linkstr_delall(linkstr, &free);
 	return (line_current);
 }
 
