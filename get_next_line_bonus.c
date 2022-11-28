@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:33 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 11:48:16 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:54:07 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ t_linkstr	*ft_linkstr_new(size_t linksize)
 	t_linkstr	*linkstr;
 
 	linkstr = malloc(sizeof(*linkstr));
-	if (!linkstr)
+	if (!linkstr || !linksize)
 		return (NULL);
 	linkstr->strs_first = ft_lst_new(malloc(linksize * sizeof(char *)));
 	if (!linkstr->strs_first)
@@ -57,7 +57,7 @@ void	ft_linkstr_add(t_linkstr *linkstr, char *str)
 
 	if (!linkstr | !str)
 		return ;
-	if ((linkstr->i + 1) % (linkstr->linksize + 1) == 0)
+	if (linkstr->i && linkstr->i % linkstr->linksize == 0)
 	{
 		strs_new = malloc(linkstr->linksize * sizeof(*strs_new));
 		linkstr->strs_last->next = ft_lst_new(strs_new);
@@ -89,7 +89,7 @@ static size_t	ft_linkstr_size(t_linkstr *linkstr)
 	i = 0;
 	while (i < linkstr->i)
 	{
-		if ((i + 1) % (linkstr->linksize + 1) == 0)
+		if (i && i % linkstr->linksize == 0)
 			node_current = node_current->next;
 		strs = (char **)node_current->content;
 		size += ft_quicklen(strs[i % linkstr->linksize]);
@@ -108,7 +108,7 @@ static size_t	ft_linkstr_size(t_linkstr *linkstr)
 char	*ft_linkstr_collect(t_linkstr *linkstr)
 {
 	char	*collect;
-	t_list	*node_current;
+	t_list	*cur;
 	size_t	i;
 	size_t	j;
 	size_t	k;
@@ -116,16 +116,16 @@ char	*ft_linkstr_collect(t_linkstr *linkstr)
 	if (!linkstr)
 		return (NULL);
 	collect = malloc((ft_linkstr_size(linkstr) + 1) * sizeof(*collect));
-	node_current = linkstr->strs_first;
+	cur = linkstr->strs_first;
 	i = 0;
 	j = 0;
 	while (i < linkstr->i)
 	{
-		if ((i + 1) % (linkstr->linksize + 1) == 0)
-			node_current = node_current->next;
+		if (i && i % linkstr->linksize == 0)
+			cur = cur->next;
 		k = 0;
-		while (((char **)node_current->content)[i][k])
-			collect[j++] = ((char **)node_current->content)[i][k++];
+		while (((char **)cur->content)[i % linkstr->linksize][k])
+			collect[j++] = ((char **)cur->content)[i % linkstr->linksize][k++];
 		i++;
 	}
 	collect[j] = '\0';
@@ -154,14 +154,14 @@ void	*ft_linkstr_delall(t_linkstr *linkstr, void (*f_free)(void *))
 	i = 0;
 	while (i < linkstr->i)
 	{
-		if ((i + 1) % (linkstr->linksize + 1) == 0)
+		if (i && i % linkstr->linksize == 0)
 		{
 			node_previous = node_current;
 			node_current = node_current->next;
 			ft_lst_delone(node_previous, &free);
 		}
 		if (f_free)
-			f_free(((char **)node_current->content)[i]);
+			f_free(((char **)node_current->content)[i % linkstr->linksize]);
 		i++;
 	}
 	ft_lst_delone(node_current, &free);

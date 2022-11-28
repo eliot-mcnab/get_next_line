@@ -6,13 +6,31 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:45:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 12:02:49 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 14:28:05 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include "get_next_line_bonus.h"
 #include <stdlib.h>
+
+/*
+ * @brief Reads BUFFER_SIZE bytes from the file described by [fd] into [buffer].
+ *	guarantees to null-terminate [buffer] after the last read character.\
+ *
+ * @param fd (int): file descriptor of the file to read.
+ * @param buffer (char *): the buffer to copy the contents of the file to.
+ *
+ * @return (ssize_t): the numbers of characters read into [buffer].
+ */
+static ssize_t	saferead(int fd, char *buffer)
+{
+	ssize_t	i;
+
+	i = read(fd, buffer, BUFFER_SIZE);
+	buffer[i] = '\0';
+	return (i);
+}
 
 /*
  * @brief Gets the next line in the file corresponding to the given file 
@@ -38,11 +56,10 @@ char	*get_next_line(int fd)
 	line_current = NULL;
 	while (*line_end != '\n')
 	{
-		line.buffer[BUFFER_SIZE] = '\0';
-		if (!line.i && read(fd, line.buffer, BUFFER_SIZE) <= 0)
-		{
+		if (!line.i && !saferead(fd, line.buffer))
 			return (ft_linkstr_delall(linkstr, &free));
-		}
+		if (!line.buffer[line.i])
+			return (NULL);
 		line_end = ft_quickfind(line.buffer + line.i, '\n');
 		substr = ft_substr(line.buffer + line.i, line_end);
 		line.i = (size_t)((line_end - line.buffer + 1) % (BUFFER_SIZE + 1));

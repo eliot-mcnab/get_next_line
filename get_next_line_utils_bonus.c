@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:38:00 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:55:17 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 12:04:48 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,17 @@ t_list	*ft_lst_new(void *content)
  *
  * @param lst (t_lst): the list to free.
  * @param f_free (void (void *)): function used to free the contents of the lits
+ *
+ * @return (void *): NULL.
  */
-void	ft_lst_delone(t_list *lst, void (*f_free)(void *))
+void	*ft_lst_delone(t_list *lst, void (*f_free)(void *))
 {
 	if (!lst | ! f_free)
-		return ;
+		return (NULL);
 	lst->next = NULL;
 	f_free(lst->content);
 	free(lst);
+	return (NULL);
 }
 
 /*
@@ -54,14 +57,16 @@ void	ft_lst_delone(t_list *lst, void (*f_free)(void *))
  *
  * @param lst (t_lst **): the head of the list.
  * @param f_free (void (void *)): function used to free the contents of the lits
+ *
+ * @return (void *): NULL.
  */
-void	ft_lst_delall(t_list **lst, void (*f_free)(void *))
+void	*ft_lst_delall(t_list **lst, void (*f_free)(void *))
 {
 	t_list	*node_current;
 	t_list	*node_previous;
 
 	if (!lst | !f_free)
-		return ;
+		return (NULL);
 	node_current = *lst;
 	while (node_current)
 	{
@@ -70,4 +75,5 @@ void	ft_lst_delall(t_list **lst, void (*f_free)(void *))
 		ft_lst_delone(node_previous, f_free);
 	}
 	*lst = NULL;
+	return (NULL);
 }
