@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:45:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 10:57:01 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 11:05:33 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,13 @@ char	*get_next_line(int fd)
 	char			*substr;
 
 	line_current = NULL;
-	line_end = "_";
+	line_end = "";
 	linkstr = ft_linkstr_new(ARRAY_SIZE);
 	while (*line_end != '\n')
 	{
 		line.buffer[BUFFER_SIZE] = '\0';
-		if (!line.i)
-			read(fd, line.buffer, BUFFER_SIZE);
+		if (!line.i && read(fd, line.buffer, BUFFER_SIZE) <= 0)
+			return (NULL);
 		line_end = ft_quickfind(line.buffer + line.i, '\n');
 		substr = ft_substr(line.buffer + line.i, line_end);
 		line.i = (size_t)((line_end - line.buffer + 1) % (BUFFER_SIZE + 1));
