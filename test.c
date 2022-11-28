@@ -6,29 +6,27 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:15:31 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:56:30 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 10:33:48 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
 #include "get_next_line.h"
 #include "get_next_line_bonus.h"
 #include <stdio.h>
-
-#define STR_SIZE 32
+#include <fcntl.h>
 
 int	main(void)
 {
-	t_linkstr	*linkstr;
-	char		*collect;
+	FILE	*fp;
+	int		fd;
+	char	*line;
 
-	linkstr = ft_linkstr_new(STR_SIZE);
-	ft_linkstr_add(linkstr, "test");
-	ft_linkstr_add(linkstr, "hello");
-	ft_linkstr_add(linkstr, "world");
-	collect = ft_linkstr_collect(linkstr);
-	ft_putstr_fd(collect, STDOUT);
-	ft_linkstr_delall(linkstr);
-	free(collect);
+	fp = fopen("test.txt", "r");
+	fd = fileno(fp);
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	/* printf("======\n");
+	line = get_next_line(fd);
+	printf("%s\n", line); */
 	return (0);
 }

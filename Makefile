@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:30:50 by emcnab            #+#    #+#              #
-#    Updated: 2022/11/26 15:22:23 by emcnab           ###   ########.fr        #
+#    Updated: 2022/11/26 16:35:01 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ export SEPERATOR
 
 # mandatory files
 define MAND_FILES
-	get_next_line_utils.c	test.c
+	get_next_line.c get_next_line_utils.c	test.c
 endef
 
 # bonus files

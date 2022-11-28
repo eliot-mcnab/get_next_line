@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 13:35:39 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 15:56:22 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/26 16:21:04 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 # define GET_NEXT_LINE_BONUS_H
 
 # include "get_next_line.h"
-# include "libft.h"
 
-/* typedef struct s_list
+typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
-}	t_list; */
+}	t_list;
 
 typedef struct s_linkstr
 {
