@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 18:15:31 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 10:33:48 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/28 10:59:00 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,17 @@ int	main(void)
 	fd = fileno(fp);
 	line = get_next_line(fd);
 	printf("%s\n", line);
-	/* printf("======\n");
+	printf("======\n");
 	line = get_next_line(fd);
-	printf("%s\n", line); */
+	printf("%s\n", line);
+	printf("======\n");
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	printf("======\n");
+	line = get_next_line(fd);
+	printf("%s\n", line);
+	printf("======\n");
+	line = get_next_line(fd);
+	printf("%s\n", line);
 	return (0);
 }
