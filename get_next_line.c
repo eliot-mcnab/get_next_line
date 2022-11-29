@@ -6,12 +6,11 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:45:32 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/29 10:05:20 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:17:07 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include "get_next_line_bonus.h"
 #include <stdlib.h>
 
 /*
@@ -27,6 +26,8 @@ static ssize_t	saferead(int fd, char *buffer)
 {
 	ssize_t	i;
 
+	if (BUFFER_SIZE < 1)
+		return (0);
 	i = read(fd, buffer, BUFFER_SIZE);
 	buffer[i] = '\0';
 	return (i);
@@ -79,19 +80,19 @@ static char	*ft_freejoin(char *str_a, char *str_b)
 	size_t	j;
 	char	*joined;
 
-	if (!str_a || !str_b)
-		return (NULL);
 	len_tot = ft_quicklen(str_a) + ft_quicklen(str_b);
 	i = 0;
 	j = 0;
 	joined = ft_stralloc(len_tot);
-	while (str_a[j])
+	while (str_a && str_a[j])
 		joined[i++] = str_a[j++];
 	j = 0;
-	while (str_b[j])
+	while (str_b && str_b[j])
 		joined[i++] = str_b[j++];
-	free(str_a);
-	free(str_b);
+	if (str_a)
+		free(str_a);
+	if (str_b)
+		free(str_b);
 	return (joined);
 }
 
@@ -114,13 +115,13 @@ char	*get_next_line(int fd)
 	char			*line_new;
 
 	line_end = "";
-	line_current = ft_stralloc(0);
-	while (*line_end != '\n')
+	line_current = NULL;
+	while (BUFFER_SIZE && *line_end != '\n')
 	{
 		if (!line.i && !saferead(fd, line.buffer))
 			return (NULL);
 		if (!line.buffer[line.i])
-			return (NULL);
+			return (line_current);
 		line_end = ft_quickfind(line.buffer + line.i, '\n');
 		if (*line_end == '\n')
 			line_new = ft_substr(line.buffer + line.i, &line_end[1]);

@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:47:28 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/26 14:59:01 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:29:53 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,8 @@ static char	*ft_longword_search(t_longword *lword, t_magic magic,
 	}
 }
 
-_Pragma("GCC diagnostic push")
-_Pragma("GCC diagnostic ignored \"-Wcast-align\"")
+// _Pragma("GCC diagnostic push")
+// _Pragma("GCC diagnostic ignored \"-Wcast-align\"")
 
 /*
  * @brief Rapidly searches for a character [c] in a string [str]. Takes
@@ -180,6 +180,8 @@ char	*ft_quickfind(char *str, int c)
 	t_longword	*lword;
 	size_t		i;
 
+	if (!str)
+		return (0);
 	i = 0;
 	while (((t_longword)(str + i) & (sizeof(t_longword) - 1)))
 	{
@@ -192,7 +194,7 @@ char	*ft_quickfind(char *str, int c)
 	return (ft_longword_search(lword, magic, (unsigned char)c));
 }
 
-_Pragma("GCC diagnostic pop")
+// _Pragma("GCC diagnostic pop")
 
 /*
  * @brief Determines the length of a null-terminated string [str].

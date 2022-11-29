@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:44:25 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/29 09:59:46 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/29 16:31:21 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,23 @@
 # include <stddef.h>
 # include <stdbool.h>
 
-# define BUFFER_SIZE 256
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 # define ARRAY_SIZE 32
 
-_Pragma("GCC diagnostic push")
-_Pragma("GCC diagnostic ignored \"-Wpadded\"")
+// _Pragma("GCC diagnostic push")
+// _Pragma("GCC diagnostic ignored \"-Wpadded\"")
 
-typedef struct	s_line
+typedef struct s_line
 {
 	size_t	i;
 	char	buffer[BUFFER_SIZE + 1];
 }	t_line;
 
-_Pragma("GCC diagnostic pop")
+// _Pragma("GCC diagnostic pop")
 
-typedef struct	s_magic
+typedef struct s_magic
 {
 	unsigned long int	lomagic;
 	unsigned long int	himagic;
