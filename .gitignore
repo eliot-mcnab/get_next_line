@@ -4,5 +4,7 @@ objs/
 # ignoring libft
 libft/
 
-# ignores test binary
+# ignores test-related files
 gnl
+test.txt
+test.c

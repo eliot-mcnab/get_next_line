@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:44:25 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/28 15:15:39 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/29 09:59:46 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ char	*get_next_line(int fd);
 char	*ft_quickfind(char *str, int c);
 size_t	ft_quicklen(char *str);
 char	*ft_stralloc(size_t size);
-char	*ft_substr(char *str_start, char *str_end);
 
 #endif
