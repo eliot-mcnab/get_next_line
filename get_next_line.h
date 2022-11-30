@@ -6,7 +6,7 @@
 /*   By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 17:44:25 by emcnab            #+#    #+#             */
-/*   Updated: 2022/11/29 16:31:21 by emcnab           ###   ########.fr       */
+/*   Updated: 2022/11/30 17:33:39 by emcnab           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@
 typedef struct s_line
 {
 	size_t	i;
+	bool	end;
 	char	buffer[BUFFER_SIZE + 1];
+	int		fd;
 }	t_line;
 
 // _Pragma("GCC diagnostic pop")

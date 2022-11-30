@@ -6,7 +6,7 @@
 #    By: emcnab <emcnab@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/21 10:30:50 by emcnab            #+#    #+#              #
-#    Updated: 2022/11/29 16:28:08 by emcnab           ###   ########.fr        #
+#    Updated: 2022/11/30 13:26:54 by emcnab           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,7 +62,7 @@ OFILES = $(patsubst %.c, $(ODIR)%.o, $(MAND_FILES))\
 CC     = clang
 CMODE  = debug hard
 OPT    = -O0
-CFLAGS = -Wall -Wextra -Werror $(OPT) -D BUFFER_SIZE=1
+CFLAGS = -Wall -Wextra -Werror $(OPT)
 
 # compilation modes
 # debug    : debug mode
@@ -85,7 +85,7 @@ LIBFT_REPO = https://github.com/eliot-mcnab/libft.git
 LIBFT_DIR  = libft
 
 # dependencies
-DEPS = libft/libft.a
+DEPS = 
 
 # program name
 BINARY = gnl
@@ -108,18 +108,6 @@ $(BINARY): $(OFILES) $(DEPS)
 $(ODIR)%.o:%.c
 	@$(CC) $(CFLAGS) -c -o $@ $^
 	@echo "${LGRAY}${@} ${GREEN}built successfully!${LGRAY}"
-
-# updates libft
-update: $(LIBFT_DIR)
-	@(cd libft && git pull)
-	@(cd libft && make all)
-	@cp libft/libft.h ./
-	@echo "${PURPLE}  udpdated ${LPURPLE}libft${LGRAY}"
-
-# clones git repo if it does not exist
-$(LIBFT_DIR):
-	@git clone $(LIBFT_REPO)
-	@echo "${PURPLE}  cloned ${LPURPLE}libft${LGRAY}"
 
 # removes all objects
 clean:

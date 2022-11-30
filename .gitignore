@@ -4,6 +4,9 @@ objs/
 # ignoring libft
 libft/
 
+# ingores intra folder
+rendu/
+
 # ignores test-related files
 gnl
 test.txt
